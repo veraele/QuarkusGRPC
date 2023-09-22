@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.veraele.chat.grpc";
+
+package v1;
+
+service ChatService {
+  rpc JoinChat (JoinRequest) returns (stream ChatMessage);
+  rpc SendMessage (ChatMessage) returns (Empty);
+}
+
+message JoinRequest {
+  string username = 1;
+}
+
+message ChatMessage {
+  string username = 1;
+  string message = 2;
+}
+
+message Empty {}
